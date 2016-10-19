@@ -1,0 +1,20 @@
+{
+    "name": "magenerds/smtp",
+    "description": "",
+    "authors": [
+        {
+            "email": "j.zelger@techdivision.com",
+            "name": "Johann Zelger"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Magenerds\\Smtp\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}
