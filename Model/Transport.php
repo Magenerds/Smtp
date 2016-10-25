@@ -45,13 +45,19 @@ class Transport extends \Zend_Mail_Transport_Smtp implements \Magento\Framework\
     )
     {
         // get module enabled flag
-        $moduleEnabled = $scopeConfig->getValue(
+        $moduleEnabled = $scopeConfig->isSetFlag(
             'smtp/general/enabled',
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
 
-        // if module is enabled
-        if ($moduleEnabled) {
+        // if module is not enabled call default constructor
+        if ($moduleEnabled === false) {
+            // call parent constructor
+            parent::__construct();
+
+            // if module is enabled
+        } else {
+
             // check if message is correct object
             if (!$message instanceof \Zend_Mail) {
                 throw new \InvalidArgumentException('The message should be an instance of \Zend_Mail');
@@ -71,10 +77,10 @@ class Transport extends \Zend_Mail_Transport_Smtp implements \Magento\Framework\
             $this->_message = $message;
             // set instance to internal property
             $this->_scopeConfig = $scopeConfig;
-        }
 
-        // call parent constructor
-        parent::__construct($smtpHost, $smtpConf);
+            // call parent constructor
+            parent::__construct($smtpHost, $smtpConf);
+        }
     }
 
     /**
