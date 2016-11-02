@@ -9,6 +9,8 @@
     ],
     "minimum-stability": "dev",
     "require": {},
+    "version": "1.0.0",
+    "license": "OSL-3.0",
     "autoload": {
         "psr-4": {
             "Magenerds\\Smtp\\": ""
