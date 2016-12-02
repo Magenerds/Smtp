@@ -20,7 +20,7 @@
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
 	<system>
-		<tab id="magenerds" sortOrder="10" translate="label">
+		<tab id="Magenerds" sortOrder="10" translate="label">
 			<label>Magenerds</label>
 		</tab>
 		<section id="smtp" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
