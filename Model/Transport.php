@@ -16,6 +16,7 @@
  * @link       http://www.techdivision.com/
  * @author     Johann Zelger <j.zelger@techdivision.com>
  */
+
 namespace Magenerds\Smtp\Model;
 
 /**
