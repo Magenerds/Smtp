@@ -18,17 +18,18 @@
  * @link       http://www.techdivision.com/
  */
  -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
-	<default>
-		<smtp>
-			<general>
-				<enabled/>
-				<auth>login</auth>
-				<tls>tls</tls>
-				<port>587</port>
-				<username/>
-				<password/>
-			</general>
-		</smtp>
-	</default>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <smtp>
+            <general>
+                <enabled/>
+                <auth>login</auth>
+                <tls>tls</tls>
+                <port>587</port>
+                <username/>
+                <password/>
+            </general>
+        </smtp>
+    </default>
 </config>
