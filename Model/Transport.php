@@ -15,105 +15,63 @@
  * @version    ${release.version}
  * @link       http://www.techdivision.com/
  * @author     Johann Zelger <j.zelger@techdivision.com>
+ * @author     Vadim Justus <v.justus@techdivision.com>
  */
 
 namespace Magenerds\Smtp\Model;
+
+use Magenerds\Smtp\Api\ConfigInterface;
+use Magento\Framework\Exception\MailException;
+use Magento\Framework\Mail\MessageInterface;
+use Magento\Framework\Mail\TransportInterface;
+use Magento\Framework\Phrase;
 
 /**
  * Class Transport
  * @package Magenerds\Smtp\Model
  */
-class Transport extends \Zend_Mail_Transport_Smtp implements \Magento\Framework\Mail\TransportInterface
+class Transport extends \Zend_Mail_Transport_Smtp implements TransportInterface
 {
     /**
-     * @var \Magento\Framework\Mail\MessageInterface
+     * @var MessageInterface
      */
     protected $message;
 
     /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
-     */
-    protected $scopeConfig;
-
-    /**
-     * @param \Magento\Framework\Mail\MessageInterface $message
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @throws \InvalidArgumentException
+     * @param MessageInterface $message
+     * @param ConfigInterface $config
      */
     public function __construct(
-        \Magento\Framework\Mail\MessageInterface $message,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+        MessageInterface $message,
+        ConfigInterface $config
     ) {
-        // get module enabled flag
-        $moduleEnabled = $scopeConfig->isSetFlag(
-            'smtp/general/enabled',
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-        );
-
-        // if module is not enabled call default constructor
-        if ($moduleEnabled === false) {
-            // call parent constructor
-            parent::__construct();
-
-            // if module is enabled
-        } else {
-            // check if message is correct object
-            if (!$message instanceof \Zend_Mail) {
-                throw new \InvalidArgumentException('The message should be an instance of \Zend_Mail');
-            }
-
-            // set smtp configurations
-            $smtpHost = $scopeConfig->getValue(
-                'smtp/general/host',
-                \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-            );
-            $smtpConf = [
-                'auth' => $scopeConfig->getValue(
-                    'smtp/general/auth',
-                    \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-                ),
-                'tls' => $scopeConfig->getValue(
-                    'smtp/general/tls',
-                    \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-                ),
-                'port' => $scopeConfig->getValue(
-                    'smtp/general/port',
-                    \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-                ),
-                'username' => $scopeConfig->getValue(
-                    'smtp/general/username',
-                    \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-                ),
-                'password' => $scopeConfig->getValue(
-                    'smtp/general/password',
-                    \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-                ),
-            ];
-
-            // set message to internal property
-            $this->message = $message;
-            // set instance to internal property
-            $this->scopeConfig = $scopeConfig;
-
-            // call parent constructor
-            parent::__construct($smtpHost, $smtpConf);
+        // check if message is correct object
+        if (!$message instanceof \Zend_Mail) {
+            throw new \InvalidArgumentException('The message should be an instance of \Zend_Mail');
         }
+
+        // set smtp configurations
+        $smtpHost = $config->getHost();
+        $smtpConf = $config->getConfigData();
+
+        // set message to internal property
+        $this->message = $message;
+
+        // call parent constructor
+        parent::__construct($smtpHost, $smtpConf);
     }
 
     /**
      * Send a mail using this transport
      * @return void
-     * @throws \Magento\Framework\Exception\MailException
+     * @throws MailException
      */
     public function sendMessage()
     {
         try {
             parent::send($this->message);
         } catch (\Exception $exception) {
-            throw new \Magento\Framework\Exception\MailException(
-                new \Magento\Framework\Phrase($exception->getMessage()),
-                $exception
-            );
+            throw new MailException(new Phrase($exception->getMessage()), $exception);
         }
     }
 }

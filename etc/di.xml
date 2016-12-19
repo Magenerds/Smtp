@@ -21,4 +21,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="\Magento\Framework\Mail\Transport" type="Magenerds\Smtp\Model\Transport"/>
+
+    <!-- Register config class for ConfigInterface -->
+    <preference for="\Magenerds\Smtp\Api\ConfigInterface" type="Magenerds\Smtp\Model\Config"/>
 </config>
