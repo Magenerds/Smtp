@@ -31,7 +31,7 @@ class Config implements ConfigInterface
     /**
      * @var DeploymentConfig
      */
-    protected $deploymentConfig;
+    private $deploymentConfig;
 
     /**
      * Config constructor.
