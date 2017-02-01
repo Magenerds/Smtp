@@ -64,7 +64,7 @@ class Config implements ConfigInterface
                 ConfigInterface::CONFIG_KEY_AUTH,
                 ConfigInterface::DEFAULT_AUTH
             ),
-            'tls' => $this->deploymentConfig->get(
+            'ssl' => $this->deploymentConfig->get(
                 ConfigInterface::CONFIG_KEY_TLS,
                 ConfigInterface::DEFAULT_TLS
             ),
