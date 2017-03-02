@@ -13,10 +13,11 @@ namespace Magenerds\Smtp\Api;
  * @category   Magenerds
  * @package    Magenerds_Smtp
  * @subpackage Model
- * @copyright  Copyright (c) 2016 TechDivision GmbH (http://www.techdivision.com)
+ * @copyright  Copyright (c) 2017 TechDivision GmbH (http://www.techdivision.com)
  * @version    ${release.version}
  * @link       http://www.techdivision.com/
  * @author     Vadim Justus <v.justus@techdivision.com>
+ * @author     Julian Schlarb <j.schlarb@techdivision.com>
  */
 interface ConfigInterface
 {
@@ -25,7 +26,7 @@ interface ConfigInterface
      */
     const CONFIG_KEY_HOST = 'smtp/host';
     const CONFIG_KEY_AUTH = 'smtp/auth';
-    const CONFIG_KEY_TLS = 'smtp/tls';
+    const CONFIG_KEY_SSL = 'smtp/ssl';
     const CONFIG_KEY_PORT = 'smtp/port';
     const CONFIG_KEY_USERNAME = 'smtp/username';
     const CONFIG_KEY_PASSWORD = 'smtp/password';
@@ -35,7 +36,7 @@ interface ConfigInterface
      */
     const DEFAULT_HOST = 'localhost';
     const DEFAULT_AUTH = '';
-    const DEFAULT_TLS = '';
+    const DEFAULT_SSL = '';
     const DEFAULT_PORT = '25';
     const DEFAULT_USERNAME = '';
     const DEFAULT_PASSWORD = '';
