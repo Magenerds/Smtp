@@ -12,14 +12,15 @@
  * @category   Magenerds
  * @package    Magenerds_Smtp
  * @subpackage etc
- * @copyright  Copyright (c) 2016 TechDivision GmbH (http://www.techdivision.com)
+ * @copyright  Copyright (c) 2017 TechDivision GmbH (http://www.techdivision.com)
  * @version    ${release.version}
  * @link       http://www.techdivision.com/
  * @author     Johann Zelger <j.zelger@techdivision.com>
  * @author     Vadim Justus <v.justus@techdivision.com>
+ * @author     Julian Schlarb <j.schlarb@techdivision.com>
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Magenerds_Smtp" setup_version="2.0.0"/>
+    <module name="Magenerds_Smtp" setup_version="2.1.0"/>
 </config>

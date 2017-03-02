@@ -11,10 +11,11 @@
  * @category   Magenerds
  * @package    Magenerds_Smtp
  * @subpackage Model
- * @copyright  Copyright (c) 2016 TechDivision GmbH (http://www.techdivision.com)
+ * @copyright  Copyright (c) 2017 TechDivision GmbH (http://www.techdivision.com)
  * @version    ${release.version}
  * @link       http://www.techdivision.com/
  * @author     Vadim Justus <v.justus@techdivision.com>
+ * @author     Julian Schlarb <j.schlarb@techdivision.com>
  */
 
 namespace Magenerds\Smtp\Model;
@@ -59,18 +60,16 @@ class Config implements ConfigInterface
      */
     public function getConfigData()
     {
-        return [
+        $config = [
             'auth' => $this->deploymentConfig->get(
                 ConfigInterface::CONFIG_KEY_AUTH,
                 ConfigInterface::DEFAULT_AUTH
             ),
-            'tls' => $this->deploymentConfig->get(
-                ConfigInterface::CONFIG_KEY_TLS,
-                ConfigInterface::DEFAULT_TLS
+            'ssl' => $this->deploymentConfig->get(
+                ConfigInterface::CONFIG_KEY_SSL
             ),
             'port' => $this->deploymentConfig->get(
-                ConfigInterface::CONFIG_KEY_PORT,
-                ConfigInterface::DEFAULT_PORT
+                ConfigInterface::CONFIG_KEY_PORT
             ),
             'username' => $this->deploymentConfig->get(
                 ConfigInterface::CONFIG_KEY_USERNAME,
@@ -81,5 +80,11 @@ class Config implements ConfigInterface
                 ConfigInterface::DEFAULT_PASSWORD
             ),
         ];
+
+        if (strlen(trim($config['ssl'])) === 0) {
+            unset($config['ssl']);
+        }
+
+        return $config;
     }
 }

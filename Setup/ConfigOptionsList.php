@@ -11,10 +11,11 @@
  * @category   Magenerds
  * @package    Magenerds_Smtp
  * @subpackage Setup
- * @copyright  Copyright (c) 2016 TechDivision GmbH (http://www.techdivision.com)
+ * @copyright  Copyright (c) 2017 TechDivision GmbH (http://www.techdivision.com)
  * @version    ${release.version}
  * @link       http://www.techdivision.com/
  * @author     Vadim Justus <v.justus@techdivision.com>
+ * @author     Julian Schlarb <j.schlarb@techdivision.com>
  */
 namespace Magenerds\Smtp\Setup;
 
@@ -39,7 +40,7 @@ class ConfigOptionsList implements ConfigOptionsListInterface
     const INPUT_KEY_ENABLED = 'smtp-enable';
     const INPUT_KEY_HOST = 'smtp-host';
     const INPUT_KEY_AUTH = 'smtp-auth';
-    const INPUT_KEY_TLS = 'smtp-tls';
+    const INPUT_KEY_SSL = 'smtp-ssl';
     const INPUT_KEY_PORT = 'smtp-port';
     const INPUT_KEY_USERNAME = 'smtp-username';
     const INPUT_KEY_PASSWORD = 'smtp-password';
@@ -68,12 +69,13 @@ class ConfigOptionsList implements ConfigOptionsListInterface
                 'Authentification method for SMTP transport',
                 ConfigInterface::DEFAULT_AUTH
             ),
-            new TextConfigOption(
-                ConfigOptionsList::INPUT_KEY_TLS,
-                TextConfigOption::FRONTEND_WIZARD_TEXT,
-                ConfigInterface::CONFIG_KEY_TLS,
-                'Use TLS for SMTP transport',
-                ConfigInterface::DEFAULT_TLS
+            new SelectConfigOption(
+                ConfigOptionsList::INPUT_KEY_SSL,
+                SelectConfigOption::FRONTEND_WIZARD_SELECT,
+                ['', 'tls', 'ssl'],
+                ConfigInterface::CONFIG_KEY_SSL,
+                'Use ssl or tls to secure SMTP transport',
+                ConfigInterface::DEFAULT_SSL
             ),
             new TextConfigOption(
                 ConfigOptionsList::INPUT_KEY_PORT,
@@ -123,10 +125,11 @@ class ConfigOptionsList implements ConfigOptionsListInterface
                 $options[ConfigOptionsList::INPUT_KEY_AUTH]
             );
         }
-        if (isset($options[ConfigOptionsList::INPUT_KEY_TLS])) {
+        if (isset($options[ConfigOptionsList::INPUT_KEY_SSL]) &&
+            !empty($options[ConfigOptionsList::INPUT_KEY_SSL])) {
             $configData->set(
-                ConfigInterface::CONFIG_KEY_TLS,
-                $options[ConfigOptionsList::INPUT_KEY_TLS]
+                ConfigInterface::CONFIG_KEY_SSL,
+                $options[ConfigOptionsList::INPUT_KEY_SSL]
             );
         }
         if (isset($options[ConfigOptionsList::INPUT_KEY_PORT])) {

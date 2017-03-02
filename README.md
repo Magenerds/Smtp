@@ -12,7 +12,7 @@ for `setup:config:set` and `setup:install`
 
      --smtp-host       External SMTP host for mail transport
      --smtp-auth       Authentification method for SMTP transport
-     --smtp-tls        Use TLS for SMTP transport
+     --smtp-ssl        Use ssl or tls to secure SMTP transport
      --smtp-port       SMTP port
      --smtp-username   SMTP usename
      --smtp-password   SMTP password
@@ -25,8 +25,8 @@ for further information.
     'smtp' => [
         'host' => 'mail.server.com',
         'auth' => 'login',
-        'tls' => '',
-        'port' => '587',
+        'ssl' => '',
+        'port' => '25',
         'username' => 'mail-user',
         'password' => 'P4ssW0rD',
     ],
