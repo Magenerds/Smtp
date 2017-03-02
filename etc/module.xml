@@ -22,5 +22,5 @@
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Magenerds_Smtp" setup_version="2.1.0"/>
+    <module name="Magenerds_Smtp" setup_version="3.0.0"/>
 </config>
