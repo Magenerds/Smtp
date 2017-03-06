@@ -81,6 +81,7 @@ class Config implements ConfigInterface
             ),
         ];
 
+        // supress Zend_Mail_Protocol_Exception:  is unsupported SSL
         if (strlen(trim($config['ssl'])) === 0) {
             unset($config['ssl']);
         }
