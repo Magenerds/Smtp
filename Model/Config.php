@@ -59,7 +59,7 @@ class Config implements ConfigInterface
      */
     public function getConfigData()
     {
-        return [
+        $config = [
             'auth' => $this->deploymentConfig->get(
                 ConfigInterface::CONFIG_KEY_AUTH,
                 ConfigInterface::DEFAULT_AUTH
@@ -81,5 +81,12 @@ class Config implements ConfigInterface
                 ConfigInterface::DEFAULT_PASSWORD
             ),
         ];
+
+        // supress Zend_Mail_Protocol_Exception:  is unsupported SSL
+        if (strlen(trim($config['ssl'])) === 0) {
+            unset($config['ssl']);
+        }
+
+        return $config;
     }
 }
