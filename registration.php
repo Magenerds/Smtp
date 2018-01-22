@@ -11,13 +11,12 @@
  * @category   Magenerds
  * @package    Magenerds_Smtp
  * @subpackage Module
- * @copyright  Copyright (c) 2016 TechDivision GmbH (http://www.techdivision.com)
- * @version    ${release.version}
+ * @copyright  Copyright (c) 2018 TechDivision GmbH (http://www.techdivision.com)
  * @link       http://www.techdivision.com/
  * @author     Johann Zelger <j.zelger@techdivision.com>
  */
 \Magento\Framework\Component\ComponentRegistrar::register(
-   \Magento\Framework\Component\ComponentRegistrar::MODULE,
-   'Magenerds_Smtp',
-   __DIR__
+    \Magento\Framework\Component\ComponentRegistrar::MODULE,
+    'Magenerds_Smtp',
+    __DIR__
 );

@@ -11,8 +11,7 @@
  * @category   Magenerds
  * @package    Magenerds_Smtp
  * @subpackage Model
- * @copyright  Copyright (c) 2017 TechDivision GmbH (http://www.techdivision.com)
- * @version    ${release.version}
+ * @copyright  Copyright (c) 2018 TechDivision GmbH (http://www.techdivision.com)
  * @link       http://www.techdivision.com/
  * @author     Vadim Justus <v.justus@techdivision.com>
  * @author     Julian Schlarb <j.schlarb@techdivision.com>
@@ -25,6 +24,7 @@ use Magento\Framework\App\DeploymentConfig;
 
 /**
  * Class Transport
+ *
  * @package Magenerds\Smtp\Model
  */
 class Config implements ConfigInterface
@@ -36,11 +36,13 @@ class Config implements ConfigInterface
 
     /**
      * Config constructor.
+     *
      * @param DeploymentConfig $deploymentConfig
      */
     public function __construct(
         DeploymentConfig $deploymentConfig
-    ) {
+    )
+    {
         $this->deploymentConfig = $deploymentConfig;
     }
 
@@ -76,8 +78,8 @@ class Config implements ConfigInterface
                 ConfigInterface::DEFAULT_USERNAME
             ),
             'password' => $this->deploymentConfig->get(
-                ConfigInterface::CONFIG_KEY_PASSWORD,
-                ConfigInterface::DEFAULT_PASSWORD
+                ConfigInterface::CONFIG_KEY_PASSWD,
+                ConfigInterface::DEFAULT_PASSWD
             ),
         ];
 

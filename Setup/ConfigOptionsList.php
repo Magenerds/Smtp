@@ -11,12 +11,12 @@
  * @category   Magenerds
  * @package    Magenerds_Smtp
  * @subpackage Setup
- * @copyright  Copyright (c) 2017 TechDivision GmbH (http://www.techdivision.com)
- * @version    ${release.version}
+ * @copyright  Copyright (c) 2018 TechDivision GmbH (http://www.techdivision.com)
  * @link       http://www.techdivision.com/
  * @author     Vadim Justus <v.justus@techdivision.com>
  * @author     Julian Schlarb <j.schlarb@techdivision.com>
  */
+
 namespace Magenerds\Smtp\Setup;
 
 use Magenerds\Smtp\Api\ConfigInterface;
@@ -43,7 +43,7 @@ class ConfigOptionsList implements ConfigOptionsListInterface
     const INPUT_KEY_SSL = 'smtp-ssl';
     const INPUT_KEY_PORT = 'smtp-port';
     const INPUT_KEY_USERNAME = 'smtp-username';
-    const INPUT_KEY_PASSWORD = 'smtp-password';
+    const INPUT_KEY_PASSWD = 'smtp-password';
 
     /**
      * Gets a list of input options so that user can provide required
@@ -55,14 +55,14 @@ class ConfigOptionsList implements ConfigOptionsListInterface
     {
         return [
             new TextConfigOption(
-                ConfigOptionsList::INPUT_KEY_HOST,
+                static::INPUT_KEY_HOST,
                 TextConfigOption::FRONTEND_WIZARD_TEXT,
                 ConfigInterface::CONFIG_KEY_HOST,
                 'External SMTP host for mail transport',
                 ConfigInterface::DEFAULT_HOST
             ),
             new SelectConfigOption(
-                ConfigOptionsList::INPUT_KEY_AUTH,
+                static::INPUT_KEY_AUTH,
                 SelectConfigOption::FRONTEND_WIZARD_SELECT,
                 ['', 'login', 'plain', 'cramm5'],
                 ConfigInterface::CONFIG_KEY_AUTH,
@@ -70,7 +70,7 @@ class ConfigOptionsList implements ConfigOptionsListInterface
                 ConfigInterface::DEFAULT_AUTH
             ),
             new SelectConfigOption(
-                ConfigOptionsList::INPUT_KEY_SSL,
+                static::INPUT_KEY_SSL,
                 SelectConfigOption::FRONTEND_WIZARD_SELECT,
                 ['', 'tls', 'ssl'],
                 ConfigInterface::CONFIG_KEY_SSL,
@@ -78,25 +78,25 @@ class ConfigOptionsList implements ConfigOptionsListInterface
                 ConfigInterface::DEFAULT_SSL
             ),
             new TextConfigOption(
-                ConfigOptionsList::INPUT_KEY_PORT,
+                static::INPUT_KEY_PORT,
                 TextConfigOption::FRONTEND_WIZARD_TEXT,
                 ConfigInterface::CONFIG_KEY_PORT,
                 'SMTP port',
                 ConfigInterface::DEFAULT_PORT
             ),
             new TextConfigOption(
-                ConfigOptionsList::INPUT_KEY_USERNAME,
+                static::INPUT_KEY_USERNAME,
                 TextConfigOption::FRONTEND_WIZARD_TEXT,
                 ConfigInterface::CONFIG_KEY_USERNAME,
                 'SMTP usename',
                 ConfigInterface::DEFAULT_USERNAME
             ),
             new TextConfigOption(
-                ConfigOptionsList::INPUT_KEY_PASSWORD,
+                static::INPUT_KEY_PASSWD,
                 TextConfigOption::FRONTEND_WIZARD_PASSWORD,
-                ConfigInterface::CONFIG_KEY_PASSWORD,
+                ConfigInterface::CONFIG_KEY_PASSWD,
                 'SMTP password',
-                ConfigInterface::DEFAULT_PASSWORD
+                ConfigInterface::DEFAULT_PASSWD
             ),
         ];
     }
@@ -107,47 +107,47 @@ class ConfigOptionsList implements ConfigOptionsListInterface
      *
      * @param array $options
      * @param DeploymentConfig $deploymentConfig
-     * @return \Magento\Framework\Config\Data\ConfigData[]
+     * @return ConfigData[]
      */
     public function createConfig(array $options, DeploymentConfig $deploymentConfig)
     {
         $configData = new ConfigData(ConfigFilePool::APP_ENV);
 
-        if (isset($options[ConfigOptionsList::INPUT_KEY_HOST])) {
+        if (isset($options[static::INPUT_KEY_HOST])) {
             $configData->set(
                 ConfigInterface::CONFIG_KEY_HOST,
-                $options[ConfigOptionsList::INPUT_KEY_HOST]
+                $options[static::INPUT_KEY_HOST]
             );
         }
-        if (isset($options[ConfigOptionsList::INPUT_KEY_AUTH])) {
+        if (isset($options[static::INPUT_KEY_AUTH])) {
             $configData->set(
                 ConfigInterface::CONFIG_KEY_AUTH,
-                $options[ConfigOptionsList::INPUT_KEY_AUTH]
+                $options[static::INPUT_KEY_AUTH]
             );
         }
-        if (isset($options[ConfigOptionsList::INPUT_KEY_SSL]) &&
-            !empty($options[ConfigOptionsList::INPUT_KEY_SSL])) {
+        if (isset($options[static::INPUT_KEY_SSL]) &&
+            !empty($options[static::INPUT_KEY_SSL])) {
             $configData->set(
                 ConfigInterface::CONFIG_KEY_SSL,
-                $options[ConfigOptionsList::INPUT_KEY_SSL]
+                $options[static::INPUT_KEY_SSL]
             );
         }
-        if (isset($options[ConfigOptionsList::INPUT_KEY_PORT])) {
+        if (isset($options[static::INPUT_KEY_PORT])) {
             $configData->set(
                 ConfigInterface::CONFIG_KEY_PORT,
-                $options[ConfigOptionsList::INPUT_KEY_PORT]
+                $options[static::INPUT_KEY_PORT]
             );
         }
-        if (isset($options[ConfigOptionsList::INPUT_KEY_USERNAME])) {
+        if (isset($options[static::INPUT_KEY_USERNAME])) {
             $configData->set(
                 ConfigInterface::CONFIG_KEY_USERNAME,
-                $options[ConfigOptionsList::INPUT_KEY_USERNAME]
+                $options[static::INPUT_KEY_USERNAME]
             );
         }
-        if (isset($options[ConfigOptionsList::INPUT_KEY_PASSWORD])) {
+        if (isset($options[static::INPUT_KEY_PASSWD])) {
             $configData->set(
-                ConfigInterface::CONFIG_KEY_PASSWORD,
-                $options[ConfigOptionsList::INPUT_KEY_PASSWORD]
+                ConfigInterface::CONFIG_KEY_PASSWD,
+                $options[static::INPUT_KEY_PASSWD]
             );
         }
 
