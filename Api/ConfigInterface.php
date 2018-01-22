@@ -13,8 +13,7 @@ namespace Magenerds\Smtp\Api;
  * @category   Magenerds
  * @package    Magenerds_Smtp
  * @subpackage Model
- * @copyright  Copyright (c) 2017 TechDivision GmbH (http://www.techdivision.com)
- * @version    ${release.version}
+ * @copyright  Copyright (c) 2018 TechDivision GmbH (http://www.techdivision.com)
  * @link       http://www.techdivision.com/
  * @author     Vadim Justus <v.justus@techdivision.com>
  * @author     Julian Schlarb <j.schlarb@techdivision.com>
@@ -29,7 +28,7 @@ interface ConfigInterface
     const CONFIG_KEY_SSL = 'smtp/ssl';
     const CONFIG_KEY_PORT = 'smtp/port';
     const CONFIG_KEY_USERNAME = 'smtp/username';
-    const CONFIG_KEY_PASSWORD = 'smtp/password';
+    const CONFIG_KEY_PASSWD = 'smtp/password';
 
     /**
      * default values
@@ -39,7 +38,7 @@ interface ConfigInterface
     const DEFAULT_SSL = '';
     const DEFAULT_PORT = '25';
     const DEFAULT_USERNAME = '';
-    const DEFAULT_PASSWORD = '';
+    const DEFAULT_PASSWD = '';
 
     /**
      * @return string

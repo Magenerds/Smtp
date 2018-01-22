@@ -11,18 +11,19 @@
  * @category   Magenerds
  * @package    Magenerds_Smtp
  * @subpackage Setup
- * @copyright  Copyright (c) 2017 TechDivision GmbH (http://www.techdivision.com)
+ * @copyright  Copyright (c) 2018 TechDivision GmbH (http://www.techdivision.com)
  * @link       http://www.techdivision.com/
  * @author     Julian Scharb <j.schlarb@techdivision.com>
  */
+
 namespace Magenerds\Smtp\Setup;
 
 use Magento\Framework\App\DeploymentConfig;
 use Magento\Framework\Config\File\ConfigFilePool;
+use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
 use Magento\Framework\Setup\UpgradeSchemaInterface;
-use Magento\Framework\App\DeploymentConfig\Reader;
 use Magento\Framework\App\DeploymentConfig\Writer;
 
 /**
@@ -43,6 +44,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
 
     /**
      * Config constructor.
+     *
      * @param DeploymentConfig $deploymentConfig
      * @param Writer $deploymentConfigWriter
      */
@@ -70,6 +72,9 @@ class UpgradeSchema implements UpgradeSchemaInterface
         $installer->endSetup();
     }
 
+    /**
+     * @throws FileSystemException
+     */
     protected function renameEnvConfigKeyFromTlsToSsl()
     {
         $data = $this->deploymentConfig->get('smtp');
@@ -81,6 +86,4 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $this->deploymentConfigWriter->saveConfig([ConfigFilePool::APP_ENV => ['smtp' => $data]], true);
         }
     }
-
-
 }
